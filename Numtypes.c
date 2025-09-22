@@ -26,12 +26,18 @@ void IsPerfect(long long num);
 int IsDuck(long long num);
 void IsAutomorphic(long long num);
 void IsNiven(long long num);
+int IsEmirp(long long num);
+int IsTwistedPrime(long long num);
+void IsHappy(long long num);
+void IsSad(long long num);
 
 //Main Function:
 int main()
 {
-        IsNiven(18);
-        IsNiven(19);
+        IsHappy(19);
+	IsSad(4);
+	IsHappy(4);
+	IsSad(19);
 
         return 0;
 }
@@ -163,8 +169,7 @@ void IsArmstrong(long long num)
 //This function checks whether a number is disarium or not.
 void IsDisarium(long long num)
 {
-    int i=1, sum=0, rev=0;
-    long long no=num;
+    long long no=num, i=1, rev=0, sum=0;
     while(no!=0)
     {
         rev=(rev*10)+(no%10);
@@ -206,8 +211,7 @@ int PowNum(int num, long index)
 //This function checks whether a number is Spy number or not.
 void IsStrong(long long num)
 {
-    int sum=0;
-    long long no=num;
+    long long no=num, sum=0;
     while(no!=0)
     {
         sum+=factorial(no%10);
@@ -240,7 +244,7 @@ int factorial(int num)
 //This function checks whether a number is Spy number or not.
 void IsSpy(long long num)
 {
-    int sum=0, mult=1;
+    long long sum=0, mult=1;
     while(num!=0)
     {
         sum+=(num%10);
@@ -252,7 +256,7 @@ void IsSpy(long long num)
 //This function checks whether a number is a perfect number or not.
 void IsPerfect(long long num)
 {
-    int i, sum=0;
+    long long i, sum=0;
     for(i=1;i<=num/2;i++)
     {
         if(num%i==0)
@@ -315,8 +319,7 @@ void IsAutomorphic(long long num)
 //This function checks whether a number is Niven or not.
 void IsNiven(long long num)
 {
-    long long no=num;
-    int sum=0;
+    long long no=num, sum=0;
     while(no!=0)
     {
         sum+=(no%10);
@@ -330,4 +333,131 @@ void IsNiven(long long num)
     {
         printf("\n%lld is not a Niven Number.", num);
     }
+}
+
+//IsEmirp:
+//This function checks whether a number is an emirp number or not.
+int IsEmirp(long long num)
+{
+	int i;
+	long long no=num, reverse=0;
+	for(i=2;i<no/2;i++)
+	{
+		if(no%i==0)
+		{
+			printf("\n%lld is not an Emirp Number.", num);
+			return 0;
+		}
+	}
+	while(no!=0)
+	{
+		reverse=(reverse*10)+(no%10);
+		no/=10;
+	}
+	no=reverse;
+	if(no==num)
+	{
+		printf("\n%lld is not an Emirp Number", num);
+		return 0;
+	}
+	for(i=2;i<=no/2;i++)
+	{
+		if(no%i==0)
+		{
+			printf("\n%lld is not an Emirp Number.", num);
+			return 0;
+		}
+	}
+	printf("\n%lld is an Emirp Number.", num);
+
+	return 0;
+
+}
+
+//IsTwistedPrime:
+//This function checks whether a number is a twisted prime or not.
+int IsTwistedPrime(long long num)
+{
+	
+	int i;
+	long long no=num, reverse=0;
+	for(i=2;i<no/2;i++)
+	{
+		if(no%i==0)
+		{
+			printf("\n%lld is not a Twisted Prime Number.", num);
+			return 0;
+		}
+	}
+	while(no!=0)
+	{
+		reverse=(reverse*10)+(no%10);
+		no/=10;
+	}
+	no=reverse;
+	for(i=2;i<=no/2;i++)
+	{
+		if(no%i==0)
+		{
+			printf("\n%lld is not a Twisted Prime Number.", num);
+			return 0;
+		}
+	}
+	printf("\n%lld is a Twisted Prime Number.", num);
+
+	return 0;
+}
+
+//IsHappy:
+//This function checks whether a number is happy or not.
+void IsHappy(long long num)
+{
+	long sq=0, no=num;
+	while(no!=0)
+	{
+		sq+=(no%10)*(no%10);
+		no/=10;
+		if(no==0)
+		{
+			if(sq==1)
+			{
+				printf("\n%lld is a Happy Number.", num);
+				return;
+			}
+			if(sq==num)
+			{
+				printf("\n%lld is not a Happy Number.", num);
+				return;
+			}
+			no=sq;
+			sq=0;
+		}
+	}
+}
+
+//IsSad:
+//This function checks whether a number is sad or not.
+void IsSad(long long num)
+{
+	long sq=0, no=num;
+	while(no!=0)
+	{
+		sq+=(no%10)*(no%10);
+		no/=10;
+		if(no==10)
+		{
+			if(sq==1)
+			{
+				printf("\n%lld is not a Sad Number,", num);
+				return;
+			}
+			if(sq==num)
+			{
+				printf("\n%lld is a Sad Number,", num);
+				return;
+			}
+			no=sq;
+			sq=0;
+		}
+	}
 }
