@@ -7,7 +7,8 @@
 #ifndef NumTypes_H
 #define NumTypes_H
 #pragma once
-#include<stdio.h>
+#include<stdio.h>	//For Standard I/O Functions.
+#include<math.h>	//For Basic Math Functions.
 #endif
 
 //Function Prototypes:
@@ -28,16 +29,18 @@ void IsAutomorphic(long long num);
 void IsNiven(long long num);
 int IsEmirp(long long num);
 int IsTwistedPrime(long long num);
-void IsHappy(long long num);
+int IsHappy(long long num);
 void IsSad(long long num);
+void IsAbundant(long long num);
+void IsDeficient(long long num);
+void IsHappyPrime(long long num);
+void IsSophieGermainPrime(long long num);
 
 //Main Function:
 int main()
 {
-        IsHappy(19);
-	IsSad(4);
-	IsHappy(4);
-	IsSad(19);
+        IsSophieGermainPrime(2);
+	IsSophieGermainPrime(3);
 
         return 0;
 }
@@ -46,6 +49,7 @@ int main()
 
 //IsPrime:
 //This Function checks whether a number is prime or not.
+//Prime Numbers are the numbers that have 1 and itself as factors.
 
 int IsPrime(long long num)
 {
@@ -64,11 +68,12 @@ int IsPrime(long long num)
                 }
         }
         printf("\n%lld is a Prime Number", num);
-        return 0;
+        return 1;
 }
 
 //IsComposite:
 //This function checks whether a number is composite or not.
+//Composite Numbers are the numbers that are not prime.
 
 int IsComposite(long long num)
 {
@@ -92,6 +97,7 @@ int IsComposite(long long num)
 
 //IsEven:
 //This function checks whether the number is even or not.
+//Even Numbers are the numbers that are divisible by 2.
 
 void IsEven(long long num)
 {
@@ -107,6 +113,7 @@ void IsEven(long long num)
 
 //IsOdd:
 //This function checks whether the number is odd or not.
+//Odd Numbers are the numbers that are not divisble by 2.
 
 void IsOdd(long long num)
 {
@@ -122,6 +129,7 @@ void IsOdd(long long num)
 
 //IsPalindromeNum:
 //This function checks whether a number is palindrome or not.
+//Palindrome Numbers are the numbers that read the same when reversed(e.g, 151).
 
 void IsPalindromeNum(long long num)
 {
@@ -144,6 +152,7 @@ void IsPalindromeNum(long long num)
 
 //IsArmstrong:
 //This function checks whether a number is Armstrong Number or not.
+//Armstrong Numbers are the numbers whose sum cubes of the individual digits is equal to the number itself.
 
 void IsArmstrong(long long num)
 {
@@ -167,6 +176,8 @@ void IsArmstrong(long long num)
 
 //IsDisarium:
 //This function checks whether a number is disarium or not.
+//Disarium Numbers are the numbers whose sum of the individual digits raised to their positional values.
+
 void IsDisarium(long long num)
 {
     long long no=num, i=1, rev=0, sum=0;
@@ -195,6 +206,7 @@ void IsDisarium(long long num)
 //PowNum:
 //This function returns the value of num raised to index.
 //This is used in IsDisarium function.
+
 int PowNum(int num, long index)
 {
     int i=1, sq=1;
@@ -209,6 +221,8 @@ int PowNum(int num, long index)
 
 //IsStrong:
 //This function checks whether a number is Spy number or not.
+//Strong Numbers are the numbers whose sum of the factorials of the individual digits is equal to the number itself.
+ 
 void IsStrong(long long num)
 {
     long long no=num, sum=0;
@@ -229,6 +243,7 @@ void IsStrong(long long num)
 
 //factorial:
 //This function returns the factorial value of the passed number.
+
 int factorial(int num)
 {
     int i, f=1;
@@ -242,6 +257,8 @@ int factorial(int num)
 
 //IsSpy:
 //This function checks whether a number is Spy number or not.
+//Spy Numbers are the numbers whose sum and multiplication of the individual digits of the number are equal to the number itself.
+
 void IsSpy(long long num)
 {
     long long sum=0, mult=1;
@@ -254,6 +271,8 @@ void IsSpy(long long num)
 
 //IsPerfect:
 //This function checks whether a number is a perfect number or not.
+//Perfect Numbers are the numbers whose sum of it's factors is equal to the nmumber itself.
+
 void IsPerfect(long long num)
 {
     long long i, sum=0;
@@ -276,6 +295,8 @@ void IsPerfect(long long num)
 
 //IsDuck:
 //This function checks whether a number is a Duck Number or not.
+//Duck Numbers are the numbers which contain zeroes.(e.g., 2050, 50).
+
 int IsDuck(long long num)
 {
     long long no=num;
@@ -295,9 +316,11 @@ int IsDuck(long long num)
 
 //IsAutomorphic:
 //This function checks whether a number is Automorphic or not.
+//Automorphic Numbers are the numbers whose square ends with the number itself.
+
 void IsAutomorphic(long long num)
 {
-    long long sq=num*num;
+    long long sq=num*num, rnum=0, n=num;
     int i=1, no=0;
     while(i<=2)
     {
@@ -305,7 +328,12 @@ void IsAutomorphic(long long num)
         sq/=10;
         i++;
     }
-    if(no==52)
+    while(n!=0)
+    {
+	rnum=(rnum*10)+(n%10);
+	n/=10;
+    }
+    if(no==rnum)
     {
         printf("\n%lld is an Automorphic Number.", num);
     }
@@ -317,6 +345,8 @@ void IsAutomorphic(long long num)
 
 //IsNiven:
 //This function checks whether a number is Niven or not.
+//Niven Numbers are the numbers which are when divisible by the number which is obtained by the sum of individual digits.
+
 void IsNiven(long long num)
 {
     long long no=num, sum=0;
@@ -337,6 +367,8 @@ void IsNiven(long long num)
 
 //IsEmirp:
 //This function checks whether a number is an emirp number or not.
+//Emirp Numbers are the numbers which remain prime even when reversed but not palindromic primes.
+
 int IsEmirp(long long num)
 {
 	int i;
@@ -376,6 +408,8 @@ int IsEmirp(long long num)
 
 //IsTwistedPrime:
 //This function checks whether a number is a twisted prime or not.
+//Twisted Primes Numbers are the numbers which remain prime even when reversed and palindromic primes are also twisted primes.
+
 int IsTwistedPrime(long long num)
 {
 	
@@ -410,7 +444,9 @@ int IsTwistedPrime(long long num)
 
 //IsHappy:
 //This function checks whether a number is happy or not.
-void IsHappy(long long num)
+//Repeatedly replace a number with the sum of squares of its digits. If it eventually reaches 1 then the number is happy.
+
+int IsHappy(long long num)
 {
 	long sq=0, no=num;
 	while(no!=0)
@@ -422,12 +458,12 @@ void IsHappy(long long num)
 			if(sq==1)
 			{
 				printf("\n%lld is a Happy Number.", num);
-				return;
+				return 1;
 			}
 			if(sq==num)
 			{
 				printf("\n%lld is not a Happy Number.", num);
-				return;
+				return 0;
 			}
 			no=sq;
 			sq=0;
@@ -437,6 +473,8 @@ void IsHappy(long long num)
 
 //IsSad:
 //This function checks whether a number is sad or not.
+//Repeatedly replace a number with the sum of squares of its digits. If it eventually reaches the number itself it is Sad or Unhappy.
+
 void IsSad(long long num)
 {
 	long sq=0, no=num;
@@ -459,5 +497,86 @@ void IsSad(long long num)
 			no=sq;
 			sq=0;
 		}
+	}
+}
+
+//IsAbundant:
+//This function checks whether a given number is Abundant Number or not.
+//Abundant Numbers are the numbers whose sum of the divisors is greater than the number itself.
+
+void IsAbundant(long long num)
+{
+	long long i, sum=0;
+	for(i=1;i<=num/2;i++)
+	{
+		if(num%i==0)
+		{
+			sum+=i;
+		}
+	}
+	printf("%lld", sum);
+	if(sum>num)
+	{
+		printf("\n%lld is an Abundant Number.", num);
+	}
+	else
+	{
+		printf("\n%lld is not an Abundant Number.", num);
+	}
+}
+
+//IsDeficient:
+//This function checks whether a number is Deficient Number or not.
+//Deficient Numbers are the numbers whose sum of the divisors is smaller than the number itself.
+
+void IsDeficient(long long num)
+{
+	long long i, sum=0;
+	for(i=1;i<=(num/2);i++)
+	{
+		if(num%i==0)
+		{
+			sum+=i;
+		}
+	}
+	if(sum<num)
+	{
+		printf("\n%lld is a Deficient Number.", num);
+	}
+	else
+	{
+		printf("\n%lld is not a Deficient Number.", num);
+	}
+}
+
+//IsHappyPrime:
+//This function checks whether a number is HappyPrime Number or not.
+//Happy Prime numbers are the numbers which are both Prime and Happy.
+
+void IsHappyPrime(long long num)
+{
+	if((IsHappy(num) && IsPrime(num)))
+	{
+		printf("\nSo, %lld is a Happy Prime Number.", num);
+	}
+	else
+	{
+		printf("\nSo, %lld is not a Happy Prime Number.", num);
+	}
+}
+
+//IsSophieGermainPrimes:
+//This function checks whether a number is Sophie Germain Prime or not.
+//A prime p, 2p+1 also a prime are the Sophie Germain Primes.
+
+void IsSophieGermainPrime(long long num)
+{
+	if(IsPrime(num) && IsPrime(2*num+1))
+	{
+		printf("\nSo, %lld is a Sophie Germain Prime.", num);
+	}
+	else
+	{
+		printf("\nSo, %lld is not a Sophie Germain Prime.", num);
 	}
 }
