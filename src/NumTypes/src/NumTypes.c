@@ -528,6 +528,7 @@ void IsHappyPrime(long long num)
 	if((IsHappy(num) && IsPrime(num)))
 	{
 		printf("\nSo, %lld is a Happy Prime Number.\n", num);
+	}
 	else
 	{
 		printf("\nSo, %lld is not a Happy Prime Number.\n", num);
