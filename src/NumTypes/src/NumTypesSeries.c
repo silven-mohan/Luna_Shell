@@ -13,7 +13,7 @@
 
 void Prime(long long int n)
 {
-	num=2;
+	num=2, count=0;
 	printf("\nFirst %lld  Prime Numbers:\n", n);
 	printf("     ----------          \n");
 	while(count!=n)
@@ -42,7 +42,7 @@ void Prime(long long int n)
 
 void Composite(long long int n)
 {
-	num=2;
+	num=2, count=0;
 	printf("\nFirst %lld Composite Numbers:\n",n);
 	printf("   --------------        \n");
 	while(count!=n)
@@ -73,7 +73,7 @@ void Even(long long int n)
 {
 	printf("\nFirst %lld Even Numbers:", n);
 	printf("\n    ------------      \n");
-	num=0, count=1;
+	num=0, count=0;
 	while(count!=n)
 	{
 		printf("%lld ", num);
@@ -90,7 +90,7 @@ void Odd(long long int n)
 {
 	printf("\nFirst %lld Odd Numbers:", n);
 	printf("\n    ------------     \n");
-	num=1, count=1;
+	num=1, count=0;
 	while(count!=n)
 	{
 		printf("%lld ", num);
@@ -129,7 +129,7 @@ void Palindrome(long long int n)
 {
 	printf("\nFirst %lld Palindrome Numbers:", n);
 	printf("\n    -----------------        \n");
-	num=0, count=1;
+	num=0, count=0;
 	long long int no, rev;
 	while(count!=n)
 	{
@@ -160,7 +160,7 @@ void Armstrong(long long int n)
 {
 	printf("\nFirst %lld Armstrong Numbers:", n);
 	printf("\n      ----------------        \n");
-	count=1, num=0;
+	count=0, num=0;
 	long long int sum=0, no;
 	while(count!=n)
 	{
@@ -180,6 +180,142 @@ void Armstrong(long long int n)
 		}
 		num++;
 		count++;
+	}
+	printf("\n");
+}
+
+//Disarium():
+//This function is used  to print the Disarium Numbers upto n numbers.
+
+void Disarium(long long int n)
+{
+	long long int dis[20]={0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 89, 135, 175, 518, 598, 1306, 1676, 2427, 2646798};
+	if(n>18)
+	{
+		printf("\nThere are only 18 known Disarium Numbers");
+		n=18;
+	}
+	printf("\nFirst %lld Disarium Numbers:", n+1);
+	printf("\n         -------------      \n");
+	for(i=0;i<=n;i++) { printf("%lld ", dis[i]); }
+	printf("\n");
+}
+
+//Strong():
+//This function is used to print the Strong Numbers upto n numbers.
+
+void Strong(long long int n)
+{
+	num=0, count=0;
+	long long int sum, no;
+	printf("\nFirst %lld Strong Numbers:", n);
+	printf("\n       ------------        \n");
+	while(count!=n)
+	{
+		no=num, sum=0;
+		if(num<3)
+		{
+			printf("%lld ", num);
+			count++;
+		}
+		else
+		{
+			while(no!=0)
+			{
+				sum+=factorial(no%10);
+				no/=10;
+			}
+			if(sum==num)
+			{
+				printf("%lld ", num);
+				count++;
+			}
+		}
+		num++;
+	}
+}
+
+//Spy():
+//This function is used to print the Spy Numbers upto n numbers.
+
+void Spy(long long int n)
+{
+	long long int sum, mult, no;
+	count=0, num=0;
+	printf("\nFirst %lld Spy Numbers:", n);
+	printf("\n      -----------       \n");
+	while(count!=n)
+	{
+		sum=0, mult=1, no=num;
+		if(num<10)
+		{
+			printf("%lld ", num);
+		}
+		else
+		{
+			while(no!=0)
+			{
+				sum+=(no%10);
+				mult*=(no%10);
+				no/=10;	
+			}
+			if(sum==mult)
+			{
+				printf("%lld ", num);
+				count++;
+			}
+		}
+		num++;
+	}
+	printf("\n");	
+}
+
+//Perfect():
+//This function is used to print the Perfect Numbers upto n numbers.
+
+void Perfect(long long int n)
+{
+	count=0, num=0;
+	long long int sum;
+	printf("\nFirst %lld Perfect Numbers:");
+	printf("\n        --------------      \n");
+	while(count!=n)
+	{
+		sum=0;
+		for(i=1;i<=num/2;i++)
+		{
+			if(num%i==0)
+			{
+				sum+=i;
+			}
+		}
+		if(sum==num)
+		{
+			printf("%lld ", num);
+			count++;
+		}
+		num++;
+	}
+	printf("\n");
+}
+
+//Duck():
+//This function is used to print the Duck Numbers upto n numbers.
+
+void Duck(long long int n)
+{
+	count=0, num=0;
+	while(count!=n)
+	{
+		if(num%10==0||num%100<9)
+		{
+			if(num%100>0 || num%100<9)
+			{
+				printf("%lld ", num);
+				count++;
+			}
+		}
+		num++;
 	}
 	printf("\n");
 }
