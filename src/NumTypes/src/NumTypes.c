@@ -1,50 +1,13 @@
-
 /*** NumTypes Function Definitions ***/
 
-//Preprocessing Directives:
+/*
+ * This program contains the definitions of the functions which are used to check whether they are spefific numbers or not.
+*/
 
-//Header Guards
+#include"includes/NumTypes.h"
 
-#ifndef NumTypes_H
-#define NumTypes_H
-#pragma once
-#include<stdio.h>	//For Standard I/O Functions.
-#include<math.h>	//For Basic Math Functions.
-#endif
-
-//Function Prototypes:
-int IsPrime(long long num);
-int IsComposite(long long num);
-void IsEven(long long num);
-void IsOdd(long long num);
-void IsPalindromeNum(long long num);
-void IsArmstrong(long long num);
-void IsDisarium(long long num);
-int PowNum(int num, long index);
-void IsStrong(long long num);
-int factorial(int num);
-void IsSpy(long long num);
-void IsPerfect(long long num);
-int IsDuck(long long num);
-void IsAutomorphic(long long num);
-void IsNiven(long long num);
-int IsEmirp(long long num);
-int IsTwistedPrime(long long num);
-int IsHappy(long long num);
-void IsSad(long long num);
-void IsAbundant(long long num);
-void IsDeficient(long long num);
-void IsHappyPrime(long long num);
-void IsSophieGermainPrime(long long num);
-
-//Main Function:
-int main()
-{
-        IsSophieGermainPrime(2);
-	IsSophieGermainPrime(3);
-
-        return 0;
-}
+//Global Declarations:
+long long int i, count=1, num;
 
 //Function Definitions:
 
@@ -57,18 +20,18 @@ int IsPrime(long long num)
         int i;
         if(num==1)        //Checking if the number is 1.
         {
-                printf("\n%lld is neither a Prime nor a Composite number.", num);
+                printf("\n%lld is neither a Prime nor a Composite Number.\n", num);
                 return 0;
         }
         for(i=2;i<=num/2;i++)
         {
                 if(num%i==0)
                 {
-                        printf("\n%lld is not a Prime Number.", num);
+                        printf("\n%lld is not a Prime Number.\n", num);
                         return 0;
                 }
         }
-        printf("\n%lld is a Prime Number", num);
+        printf("\n%lld is a Prime Number.\n", num);
         return 1;
 }
 
@@ -81,18 +44,18 @@ int IsComposite(long long num)
         int i;
         if(num==1)        //Checking if the number is 1.
         {
-                printf("\n%lld is neither a Composite nor a Prime number.", num);
+                printf("\n%lld is neither a Composite nor a Prime Number.\n", num);
                 return 0;
         }
         for(i=2;i<=num/2;i++)
         {
                 if(num%i==0)
                 {
-                        printf("\n%lld is a Composite Number.", num);
+                        printf("\n%lld is a Composite Number.\n", num);
                         return 0;
                 }
         }
-        printf("\n%lld is not a Composite Number.", num);
+        printf("\n%lld is not a Composite Number.\n", num);
         return 0;
 }
 
@@ -104,11 +67,11 @@ void IsEven(long long num)
 {
         if(num%2==0)
         {
-                printf("\n%lld is an Even Number.", num);
+                printf("\n%lld is an Even Number.\n", num);
         }
         else
         {
-                printf("\n%lld is not an Even Number.", num);
+                printf("\n%lld is not an Even Number.\n", num);
         }
 }
 
@@ -120,11 +83,11 @@ void IsOdd(long long num)
 {
         if(num%2==0)
         {
-                printf("\n%lld is not an Odd Number.", num);
+                printf("\n%lld is not an Odd Number\n.", num);
         }
         else
         {
-                printf("\n%lld is an Odd Number.", num);
+                printf("\n%lld is an Odd Number.\n", num);
         }
 }
 
@@ -143,11 +106,11 @@ void IsPalindromeNum(long long num)
         }
         if(Reverse==num)
         {
-                printf("\n%lld is a Palindrome Number.", num);
+                printf("\n%lld is a Palindrome Number.\n", num);
         }
         else
         {
-                printf("\n%lld is not a Palindrome Number.", num);
+                printf("\n%lld is not a Palindrome Number.\n", num);
         }
 }
 
@@ -167,11 +130,11 @@ void IsArmstrong(long long num)
         }
         if(num==n)
         {
-                printf("\n%lld is an Armstrong Number.", num);
+                printf("\n%lld is an Armstrong Number.\n", num);
         }
         else
         {
-                printf("\n%lld is not an Armstrong Number.", num);
+                printf("\n%lld is not an Armstrong Number.\n", num);
         }
 }
 
@@ -196,11 +159,11 @@ void IsDisarium(long long num)
     }
     if(sum==num)
     {
-        printf("\n%lld is a Disarium Number.", num);
+        printf("\n%lld is a Disarium Number.\n", num);
     }
     else
     {
-        printf("\n%lld is not a Disarium Number.", num);
+        printf("\n%lld is not a Disarium Number.\n", num);
     }
 }
 
@@ -234,11 +197,11 @@ void IsStrong(long long num)
     }
     if(num==sum)
     {
-        printf("\n%lld is a Strong Number.", num);
+        printf("\n%lld is a Strong Number.\n", num);
     }
     else
     {
-        printf("\n%lld is not a Strong Number.", num);
+        printf("\n%lld is not a Strong Number.\n", num);
     }
 }
 
@@ -262,11 +225,20 @@ int factorial(int num)
 
 void IsSpy(long long num)
 {
-    long long sum=0, mult=1;
-    while(num!=0)
+    long long sum=0, mult=1, no=num;
+    while(no!=0)
     {
-        sum+=(num%10);
-        mult*=(num%10);
+        sum+=(no%10);
+        mult*=(no%10);
+	no/=10;
+    }
+    if(sum==mult)
+    {
+		printf("\n%lld is a Spy Number.\n", num);
+    }
+    else
+    {
+		printf("\n%lld is not a Spy Number.\n", num);
     }
 }
 
@@ -286,11 +258,11 @@ void IsPerfect(long long num)
     }
     if(sum==num)
     {
-        printf("\n%lld is a Perfect Number.", num);
+        printf("\n%lld is a Perfect Number.\n", num);
     }
     else
     {
-        printf("\n%lld is not a Perfect Number.", num);
+        printf("\n%lld is not a Perfect Number.\n", num);
     }
 }    
 
@@ -305,12 +277,12 @@ int IsDuck(long long num)
     {
         if((no%10)==0)
         {
-            printf("\n%lld is a Duck Number.", num);
+            printf("\n%lld is a Duck Number.\n", num);
             return 0;
         }
         no/=10;    
     }
-    printf("\n%lld is not a Duck Number.", num);
+    printf("\n%lld is not a Duck Number.\n", num);
     
     return 0;
 }
@@ -336,11 +308,11 @@ void IsAutomorphic(long long num)
     }
     if(no==rnum)
     {
-        printf("\n%lld is an Automorphic Number.", num);
+        printf("\n%lld is an Automorphic Number.\n", num);
     }
     else
     {
-        printf("\n%lld is not an Automorphic Number.", num);
+        printf("\n%lld is not an Automorphic Number.\n", num);
     }
 }
 
@@ -358,11 +330,11 @@ void IsNiven(long long num)
     }
     if(num/sum==0)
     {
-        printf("\n%lld is a Niven Number.", num);
+        printf("\n%lld is a Niven Number.\n", num);
     }
     else 
     {
-        printf("\n%lld is not a Niven Number.", num);
+        printf("\n%lld is not a Niven Number.\n", num);
     }
 }
 
@@ -378,7 +350,7 @@ int IsEmirp(long long num)
 	{
 		if(no%i==0)
 		{
-			printf("\n%lld is not an Emirp Number.", num);
+			printf("\n%lld is not an Emirp Number.\n", num);
 			return 0;
 		}
 	}
@@ -390,18 +362,18 @@ int IsEmirp(long long num)
 	no=reverse;
 	if(no==num)
 	{
-		printf("\n%lld is not an Emirp Number", num);
+		printf("\n%lld is not an Emirp Number.\n", num);
 		return 0;
 	}
 	for(i=2;i<=no/2;i++)
 	{
 		if(no%i==0)
 		{
-			printf("\n%lld is not an Emirp Number.", num);
+			printf("\n%lld is not an Emirp Number.\n", num);
 			return 0;
 		}
 	}
-	printf("\n%lld is an Emirp Number.", num);
+	printf("\n%lld is an Emirp Number.\n", num);
 
 	return 0;
 
@@ -420,7 +392,7 @@ int IsTwistedPrime(long long num)
 	{
 		if(no%i==0)
 		{
-			printf("\n%lld is not a Twisted Prime Number.", num);
+			printf("\n%lld is not a Twisted Prime Number.\n", num);
 			return 0;
 		}
 	}
@@ -434,11 +406,11 @@ int IsTwistedPrime(long long num)
 	{
 		if(no%i==0)
 		{
-			printf("\n%lld is not a Twisted Prime Number.", num);
+			printf("\n%lld is not a Twisted Prime Number.\n", num);
 			return 0;
 		}
 	}
-	printf("\n%lld is a Twisted Prime Number.", num);
+	printf("\n%lld is a Twisted Prime Number.\n", num);
 
 	return 0;
 }
@@ -458,12 +430,12 @@ int IsHappy(long long num)
 		{
 			if(sq==1)
 			{
-				printf("\n%lld is a Happy Number.", num);
+				printf("\n%lld is a Happy Number.\n", num);
 				return 1;
 			}
 			if(sq==num)
 			{
-				printf("\n%lld is not a Happy Number.", num);
+				printf("\n%lld is not a Happy Number.\n", num);
 				return 0;
 			}
 			no=sq;
@@ -487,12 +459,12 @@ void IsSad(long long num)
 		{
 			if(sq==1)
 			{
-				printf("\n%lld is not a Sad Number,", num);
+				printf("\n%lld is not a Sad Number.\n", num);
 				return;
 			}
 			if(sq==num)
 			{
-				printf("\n%lld is a Sad Number,", num);
+				printf("\n%lld is a Sad Number.\n", num);
 				return;
 			}
 			no=sq;
@@ -518,11 +490,11 @@ void IsAbundant(long long num)
 	printf("%lld", sum);
 	if(sum>num)
 	{
-		printf("\n%lld is an Abundant Number.", num);
+		printf("\n%lld is an Abundant Number.\n", num);
 	}
 	else
 	{
-		printf("\n%lld is not an Abundant Number.", num);
+		printf("\n%lld is not an Abundant Number.\n", num);
 	}
 }
 
@@ -542,11 +514,11 @@ void IsDeficient(long long num)
 	}
 	if(sum<num)
 	{
-		printf("\n%lld is a Deficient Number.", num);
+		printf("\n%lld is a Deficient Number.\n", num);
 	}
 	else
 	{
-		printf("\n%lld is not a Deficient Number.", num);
+		printf("\n%lld is not a Deficient Number.\n", num);
 	}
 }
 
@@ -558,11 +530,11 @@ void IsHappyPrime(long long num)
 {
 	if((IsHappy(num) && IsPrime(num)))
 	{
-		printf("\nSo, %lld is a Happy Prime Number.", num);
+		printf("\nSo, %lld is a Happy Prime Number.\n", num);
 	}
 	else
 	{
-		printf("\nSo, %lld is not a Happy Prime Number.", num);
+		printf("\nSo, %lld is not a Happy Prime Number.\n", num);
 	}
 }
 
@@ -574,10 +546,10 @@ void IsSophieGermainPrime(long long num)
 {
 	if(IsPrime(num) && IsPrime(2*num+1))
 	{
-		printf("\nSo, %lld is a Sophie Germain Prime.", num);
+		printf("\nSo, %lld is a Sophie Germain Prime.\n", num);
 	}
 	else
 	{
-		printf("\nSo, %lld is not a Sophie Germain Prime.", num);
+		printf("\nSo, %lld is not a Sophie Germain Prime.\n", num);
 	}
 }
