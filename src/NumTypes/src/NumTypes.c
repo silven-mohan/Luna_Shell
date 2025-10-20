@@ -17,7 +17,6 @@ long long int i, count=1, num;
 
 int IsPrime(long long num)
 {
-        int i;
         if(num==1)        //Checking if the number is 1.
         {
                 printf("\n%lld is neither a Prime nor a Composite Number.\n", num);
@@ -41,7 +40,6 @@ int IsPrime(long long num)
 
 int IsComposite(long long num)
 {
-        int i;
         if(num==1)        //Checking if the number is 1.
         {
                 printf("\n%lld is neither a Composite nor a Prime Number.\n", num);
@@ -144,7 +142,8 @@ void IsArmstrong(long long num)
 
 void IsDisarium(long long num)
 {
-    long long no=num, i=1, rev=0, sum=0;
+    long long no=num, rev=0, sum=0;
+    i=1;
     while(no!=0)
     {
         rev=(rev*10)+(no%10);
@@ -173,7 +172,8 @@ void IsDisarium(long long num)
 
 int PowNum(int num, long index)
 {
-    int i=1, sq=1;
+    int sq=1;
+    i=1;
     while(i<=index)
     {
         sq*=num;
@@ -210,13 +210,12 @@ void IsStrong(long long num)
 
 int factorial(int num)
 {
-    int i, f=1;
-    for(i=num;i>0;i--)
+    if(num==0 || num==1)
     {
-        f*=i;
+	return 1;
     }
     
-    return f;
+    return num*factorial(num-1);
 }
 
 //IsSpy:
@@ -248,7 +247,7 @@ void IsSpy(long long num)
 
 void IsPerfect(long long num)
 {
-    long long i, sum=0;
+    long long sum=0;
     for(i=1;i<=num/2;i++)
     {
         if(num%i==0)
@@ -294,7 +293,8 @@ int IsDuck(long long num)
 void IsAutomorphic(long long num)
 {
     long long sq=num*num, rnum=0, n=num;
-    int i=1, no=0;
+    int no=0;
+    i=1;
     while(i<=2)
     {
         no=(no*10)+(sq%10);
@@ -344,7 +344,6 @@ void IsNiven(long long num)
 
 int IsEmirp(long long num)
 {
-	int i;
 	long long no=num, reverse=0;
 	for(i=2;i<no/2;i++)
 	{
@@ -385,8 +384,6 @@ int IsEmirp(long long num)
 
 int IsTwistedPrime(long long num)
 {
-	
-	int i;
 	long long no=num, reverse=0;
 	for(i=2;i<no/2;i++)
 	{
@@ -479,7 +476,7 @@ void IsSad(long long num)
 
 void IsAbundant(long long num)
 {
-	long long i, sum=0;
+	long long sum=0;
 	for(i=1;i<=num/2;i++)
 	{
 		if(num%i==0)
@@ -504,7 +501,7 @@ void IsAbundant(long long num)
 
 void IsDeficient(long long num)
 {
-	long long i, sum=0;
+	long long sum=0;
 	for(i=1;i<=(num/2);i++)
 	{
 		if(num%i==0)
@@ -531,7 +528,6 @@ void IsHappyPrime(long long num)
 	if((IsHappy(num) && IsPrime(num)))
 	{
 		printf("\nSo, %lld is a Happy Prime Number.\n", num);
-	}
 	else
 	{
 		printf("\nSo, %lld is not a Happy Prime Number.\n", num);
