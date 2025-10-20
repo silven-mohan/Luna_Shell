@@ -51,4 +51,8 @@ void Natural(long long int n);
 void Whole(long long int n);
 void Palindrome(long long int n);
 void Armstrong(long long int n);
-
+void Disarium(long long int n);
+void Strong(long long int n);
+void Spy(long long int n);
+void Perfect(long long int n);
+void Duck(long long int n);
