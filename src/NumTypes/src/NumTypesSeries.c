@@ -9,7 +9,7 @@
 //Function Definitions:
 
 //Prime():
-//This function is used to print the Prime Number Series upto n numbers.
+//This function is used to print the first n Prime Numbers.
 
 void Prime(long long int n)
 {
@@ -38,7 +38,7 @@ void Prime(long long int n)
 }
 
 //Composite():
-//This function is used to print the Composite Number Series upto n numbers.
+//This function is used to print the first n Composite Numbers.
 
 void Composite(long long int n)
 {
@@ -67,7 +67,7 @@ void Composite(long long int n)
 }
 
 //Even():
-//This function is used to print the Even Number Series upto n numbers.
+//This function is used to print the first n Even Numbers.
 
 void Even(long long int n)
 {
@@ -84,7 +84,7 @@ void Even(long long int n)
 }
 
 //Odd():
-//This function is used to print the Odd Number Series upto n numbers.
+//This function is used to print the first n Odd Numbers.
 
 void Odd(long long int n)
 {
@@ -101,7 +101,7 @@ void Odd(long long int n)
 }
 
 //Natural():
-//This function is used to print the Natural Numbers upto n numbers.
+//This function is used to print the first n Natural Numbers.
 
 void Natural(long long int n)
 {
@@ -112,7 +112,7 @@ void Natural(long long int n)
 }
 
 //Whole():
-//This function is used to print the Whole Numbers upto n numbers.
+//This function is used to print the first n Whole Numbers.
 
 void Whole(long long int n)
 {
@@ -123,7 +123,7 @@ void Whole(long long int n)
 }
 
 //Palindrome():
-//This function is used to print the Palindrome Numbers upto n numbers.
+//This function is used to print the first n Palindrome Numbers.
 
 void Palindrome(long long int n)
 {
@@ -154,7 +154,7 @@ void Palindrome(long long int n)
 }
 
 //Armstrong():
-//This function is used to print the Armstrong Number upto n numbers.
+//This function is used to print the first n Armstrong Numbers.
 
 void Armstrong(long long int n)
 {
@@ -185,7 +185,7 @@ void Armstrong(long long int n)
 }
 
 //Disarium():
-//This function is used  to print the Disarium Numbers upto n numbers.
+//This function is used  to print the first n Disarium Numbers.
 
 void Disarium(long long int n)
 {
@@ -202,7 +202,7 @@ void Disarium(long long int n)
 }
 
 //Strong():
-//This function is used to print the Strong Numbers upto n numbers.
+//This function is used to print the first n Strong Numbers.
 
 void Strong(long long int n)
 {
@@ -236,7 +236,7 @@ void Strong(long long int n)
 }
 
 //Spy():
-//This function is used to print the Spy Numbers upto n numbers.
+//This function is used to print the first n Spy Numbers.
 
 void Spy(long long int n)
 {
@@ -271,7 +271,7 @@ void Spy(long long int n)
 }
 
 //Perfect():
-//This function is used to print the Perfect Numbers upto n numbers.
+//This function is used to print the first n Perfect Numbers.
 
 void Perfect(long long int n)
 {
@@ -300,19 +300,53 @@ void Perfect(long long int n)
 }
 
 //Duck():
-//This function is used to print the Duck Numbers upto n numbers.
+//This function is used to print the first n Duck Numbers.
 
 void Duck(long long int n)
 {
 	count=0, num=0;
 	while(count!=n)
 	{
-		if(num%10==0||num%100<9)
+		if(num%10==0||num%100<10)
 		{
-			if(num%100>0 || num%100<9)
+			if(num%100>0 || num%100<10)
 			{
 				printf("%lld ", num);
 				count++;
+			}
+		}
+		num++;
+	}
+	printf("\n");
+}
+
+//Automorphic():
+//This function is used to print the first n Automorphic Numbers.
+
+void Automorphic(long long int n)
+{
+	count=0, num=0;
+	long long int sq, temp, digits;
+	printf("\nFirst %lld Automorphic Numbers:", n);
+	printf("\n        -------------          \n");
+	while(count!=n)
+	{
+		sq=num*num;
+		temp=sq, digits=0;
+		//Count the no. of digits.
+		while(temp!=0)
+		{
+			temp/=10;
+			digits++;
+		}
+		//Check if Automorphic or not.
+		for(i=1;i<=digits;i++)
+		{
+			if(num == sq % PowNum(10, i))
+			{
+				printf("%lld ", num);
+				count++;
+				break;
 			}
 		}
 		num++;
