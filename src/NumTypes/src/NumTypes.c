@@ -328,7 +328,7 @@ void IsNiven(long long num)
         sum+=(no%10);
         no/=10;
     }
-    if(num/sum==0)
+    if(num%sum==0)
     {
         printf("\n%lld is a Niven Number.\n", num);
     }
