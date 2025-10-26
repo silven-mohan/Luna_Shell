@@ -57,3 +57,4 @@ void Spy(long long int n);
 void Perfect(long long int n);
 void Duck(long long int n);
 void Automorphic(long long int n);
+void Niven(long long num);
