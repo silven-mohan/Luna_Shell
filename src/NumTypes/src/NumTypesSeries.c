@@ -353,3 +353,30 @@ void Automorphic(long long int n)
 	}
 	printf("\n");
 }
+
+//Niven():
+//This function is used to print the first n Niven Numbers.
+
+void Niven(long long n)
+{
+	count=0, num=1;
+	long long sum, temp;
+	printf("\nFirst %lld Niven Numbers are:", n);
+	printf("\n       ---------------      \n");
+	while(count!=n)
+	{
+		sum=0, temp=num;
+		while(temp!=0)
+		{
+			sum+=(temp%10);
+			temp/=10;
+		}
+		if(num%sum==0)
+		{
+			printf("%lld ", num);
+			count++;
+		}
+		num++;
+	}
+	printf("\n");
+}
