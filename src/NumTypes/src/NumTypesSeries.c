@@ -380,3 +380,196 @@ void Niven(long long n)
 	}
 	printf("\n");
 }
+
+//Emirp():
+//This function is used to print the first n Emirp Numbers.
+
+void Emirp(long long n)
+{
+	count=0, num=0;
+	int flag;
+	long long int rev, no;
+	printf("\nFirst %lld Emirp Numbers:", n);
+	printf("\n        -----------       \n");
+	while(count!=n)
+	{
+		flag=0, rev=0;
+		for(i=2;i<=num/2;i++)
+		{
+			if(num%i==0)
+			{
+				flag=1;
+				break;
+			}
+		}
+		no=num;
+		while(no!=0)
+		{
+			rev=(rev*10)+(no%10);
+			no/=10;
+		}
+		if(num==rev)
+		{
+			flag=1;
+		}
+		for(i=2;i<=rev/2;i++)
+		{
+			if(rev%i==0)
+			{
+				flag=1;
+				break;
+			}
+		}
+		if(flag==0)
+		{
+			printf("%lld ", num);
+			count++;
+		}
+		num++;
+	}
+	printf("\n");
+}
+
+//TwistedPrimes():
+//This function is used to print the first n Twisted Prime Numbers.
+
+void TwistedPrimes(long long n)
+{
+	count=0, num=2;
+	int flag;
+	long long rev, no;
+	printf("\nFirst %lld Twisted Prime Numbers:", n);
+	printf("\n           ------------          \n");
+	while(count!=n)
+	{
+		flag=0, rev=0;
+		for(i=2;i<=num/2;i++)
+		{
+			if(num%i==0)
+			{
+				flag=1;
+				break;
+			}
+		}
+		no=num;
+		while(no!=0)
+		{
+			rev=(rev*10)+(no%10);
+			no/=10;
+		}
+		for(i=2;i<=rev/2;i++)
+		{
+			if(rev%i==0)
+			{
+				flag=1;
+				break;
+			}
+		}
+		if(flag==0)
+		{
+			printf("%lld ", num);
+			count++;
+		}
+		num++;
+	}
+	printf("\n");
+}
+
+//Abundant():
+//This function is used to print the first n Abundant Numbers.
+
+void Abundant(long long n)
+{
+	count=0, num=0;
+	long long int sum;
+	printf("\nFirst %lld Abundant Numbers:", n);
+	printf("\n         --------           \n");
+	while(count!=n)
+	{
+		sum=0;
+		for(i=1;i<=num/2;i++)
+		{
+			if(num%i==0)
+			{
+				sum+=i;
+			}
+		}
+		if(sum>num)
+		{
+			printf("%lld ", num);
+			count++;
+		}
+		num++;
+	}
+	printf("\n");
+}
+
+//Deficient():
+//This function is used to print the first n Deficient Numbers.
+
+void Deficient(long long n)
+{
+	count=0, num=0;
+	long long int sum;
+	printf("\nFirst %lld Deficient Numbers:", n);
+	printf("\n         ----------          \n");
+	while(count!=n)
+	{
+		sum=0;
+		for(i=1;i<=num/2;i++)
+		{
+			if(num%i==0)
+			{
+				sum+=i;
+			}
+		}
+		if(sum<num)
+		{
+			printf("%lld ", num);
+			count++;
+		}
+		num++;
+	}
+	printf("\n");
+}
+
+//SophieGermainPrimes():
+//This function is used to print the first n Sophie Germain Prime Numbers.
+
+void SophieGermainPrimes(long long n)
+{
+	count=0, num=2;
+	int flag;
+	printf("\nFirst %lld Sophie Germain Prime Numbers:", n);
+	printf("\n            -----------                 \n");
+	while(count!=n)
+	{
+		flag=0;
+		for(i=2;i<=num/2;i++)
+		{
+			if(num%i==0)
+			{
+				flag++;
+				break;
+			}
+		}
+		if(flag==0)
+		{
+			for(i=2;i<=((2*(num)+1)/2);i++)
+			{
+				if(((2*(num)+1))%i==0)
+				{
+					flag++;
+					break;
+				}
+			}
+		}
+		if(flag==0)
+		{
+			printf("%lld ", num);
+			count++;
+		}
+		num++;
+	}
+	printf("\n");
+}
