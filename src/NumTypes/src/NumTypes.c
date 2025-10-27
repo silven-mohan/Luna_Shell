@@ -293,20 +293,14 @@ int IsDuck(long long num)
 void IsAutomorphic(long long num)
 {
     long long sq=num*num, rnum=0, n=num;
-    int no=0;
-    i=1;
-    while(i<=2)
-    {
-        no=(no*10)+(sq%10);
-        sq/=10;
-        i++;
-    }
+    int digits=0;
     while(n!=0)
     {
-	rnum=(rnum*10)+(n%10);
+	digits++;
 	n/=10;
     }
-    if(no==rnum)
+    rnum=sq%(PowNum(10, digits));
+    if(num==rnum)
     {
         printf("\n%lld is an Automorphic Number.\n", num);
     }
