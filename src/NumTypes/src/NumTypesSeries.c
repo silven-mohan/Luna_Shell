@@ -11,7 +11,7 @@
 //Prime():
 //This function is used to print the first n Prime Numbers.
 
-void Prime(long long int n)
+int Prime(long long int n)
 {
 	num=2, count=0;
 	printf("\nFirst %lld  Prime Numbers:\n", n);
@@ -35,12 +35,13 @@ void Prime(long long int n)
 		num++;
 	}
 	printf("\n");
+	return 1;
 }
 
 //Composite():
 //This function is used to print the first n Composite Numbers.
 
-void Composite(long long int n)
+int Composite(long long int n)
 {
 	num=2, count=0;
 	printf("\nFirst %lld Composite Numbers:\n",n);
@@ -64,12 +65,13 @@ void Composite(long long int n)
 		num++;
 	}
 	printf("\n");
+	return 1;
 }
 
 //Even():
 //This function is used to print the first n Even Numbers.
 
-void Even(long long int n)
+int Even(long long int n)
 {
 	printf("\nFirst %lld Even Numbers:", n);
 	printf("\n    ------------      \n");
@@ -81,12 +83,13 @@ void Even(long long int n)
 		count++;
 	}
 	printf("\n");
+	return 1;
 }
 
 //Odd():
 //This function is used to print the first n Odd Numbers.
 
-void Odd(long long int n)
+int Odd(long long int n)
 {
 	printf("\nFirst %lld Odd Numbers:", n);
 	printf("\n    ------------     \n");
@@ -98,34 +101,37 @@ void Odd(long long int n)
 		count++;
 	}
 	printf("\n");
+	return 1;
 }
 
 //Natural():
 //This function is used to print the first n Natural Numbers.
 
-void Natural(long long int n)
+int Natural(long long int n)
 {
 	printf("\nFirst %lld Natural Numbers:", n);
 	printf("\n    ---------------      \n");
 	for(i=1;i<=n;i++) { printf("%lld ", i); }
 	printf("\n");
+	return 1;
 }
 
 //Whole():
 //This function is used to print the first n Whole Numbers.
 
-void Whole(long long int n)
+int Whole(long long int n)
 {
 	printf("\nFirst %lld Whole Numbers:",n);
 	printf("\n    -------------       \n");
 	for(i=0;i<=n;i++) { printf("%lld ", i); }
 	printf("\n");
+	return 1;
 }
 
 //Palindrome():
 //This function is used to print the first n Palindrome Numbers.
 
-void Palindrome(long long int n)
+int Palindrome(long long int n)
 {
 	printf("\nFirst %lld Palindrome Numbers:", n);
 	printf("\n    -----------------        \n");
@@ -151,12 +157,13 @@ void Palindrome(long long int n)
 		count++;
 	}
 	printf("\n");
+	return 1;
 }
 
 //Armstrong():
 //This function is used to print the first n Armstrong Numbers.
 
-void Armstrong(long long int n)
+int Armstrong(long long int n)
 {
 	printf("\nFirst %lld Armstrong Numbers:", n);
 	printf("\n      ----------------        \n");
@@ -182,12 +189,13 @@ void Armstrong(long long int n)
 		count++;
 	}
 	printf("\n");
+	return 1;
 }
 
 //Disarium():
 //This function is used  to print the first n Disarium Numbers.
 
-void Disarium(long long int n)
+int Disarium(long long int n)
 {
 	long long int dis[20]={0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 89, 135, 175, 518, 598, 1306, 1676, 2427, 2646798};
 	if(n>18)
@@ -199,12 +207,13 @@ void Disarium(long long int n)
 	printf("\n         -------------      \n");
 	for(i=0;i<=n;i++) { printf("%lld ", dis[i]); }
 	printf("\n");
+	return 1;
 }
 
 //Strong():
 //This function is used to print the first n Strong Numbers.
 
-void Strong(long long int n)
+int Strong(long long int n)
 {
 	num=0, count=0;
 	long long int sum, no;
@@ -233,12 +242,14 @@ void Strong(long long int n)
 		}
 		num++;
 	}
+	printf("\n");
+	return 1;
 }
 
 //Spy():
 //This function is used to print the first n Spy Numbers.
 
-void Spy(long long int n)
+int Spy(long long int n)
 {
 	long long int sum, mult, no;
 	count=0, num=0;
@@ -268,12 +279,13 @@ void Spy(long long int n)
 		num++;
 	}
 	printf("\n");	
+	return 1;
 }
 
 //Perfect():
 //This function is used to print the first n Perfect Numbers.
 
-void Perfect(long long int n)
+int Perfect(long long int n)
 {
 	count=0, num=0;
 	long long int sum;
@@ -297,12 +309,13 @@ void Perfect(long long int n)
 		num++;
 	}
 	printf("\n");
+	return 1;
 }
 
 //Duck():
 //This function is used to print the first n Duck Numbers.
 
-void Duck(long long int n)
+int Duck(long long int n)
 {
 	count=0, num=0;
 	while(count!=n)
@@ -318,12 +331,13 @@ void Duck(long long int n)
 		num++;
 	}
 	printf("\n");
+	return 1;
 }
 
 //Automorphic():
 //This function is used to print the first n Automorphic Numbers.
 
-void Automorphic(long long int n)
+int Automorphic(long long int n)
 {
 	count=0, num=0;
 	long long int sq, temp, digits;
@@ -352,12 +366,13 @@ void Automorphic(long long int n)
 		num++;
 	}
 	printf("\n");
+	return 1;
 }
 
 //Niven():
 //This function is used to print the first n Niven Numbers.
 
-void Niven(long long n)
+int Niven(long long n)
 {
 	count=0, num=1;
 	long long sum, temp;
@@ -379,12 +394,13 @@ void Niven(long long n)
 		num++;
 	}
 	printf("\n");
+	return 1;
 }
 
 //Emirp():
 //This function is used to print the first n Emirp Numbers.
 
-void Emirp(long long n)
+int Emirp(long long n)
 {
 	count=0, num=0;
 	int flag;
@@ -428,12 +444,13 @@ void Emirp(long long n)
 		num++;
 	}
 	printf("\n");
+	return 1;
 }
 
 //TwistedPrimes():
 //This function is used to print the first n Twisted Prime Numbers.
 
-void TwistedPrimes(long long n)
+int TwistedPrimes(long long n)
 {
 	count=0, num=2;
 	int flag;
@@ -473,12 +490,13 @@ void TwistedPrimes(long long n)
 		num++;
 	}
 	printf("\n");
+	return 1;
 }
 
 //Abundant():
 //This function is used to print the first n Abundant Numbers.
 
-void Abundant(long long n)
+int Abundant(long long n)
 {
 	count=0, num=0;
 	long long int sum;
@@ -502,12 +520,13 @@ void Abundant(long long n)
 		num++;
 	}
 	printf("\n");
+	return 1;
 }
 
 //Deficient():
 //This function is used to print the first n Deficient Numbers.
 
-void Deficient(long long n)
+int Deficient(long long n)
 {
 	count=0, num=0;
 	long long int sum;
@@ -531,12 +550,13 @@ void Deficient(long long n)
 		num++;
 	}
 	printf("\n");
+	return 1;
 }
 
 //SophieGermainPrimes():
 //This function is used to print the first n Sophie Germain Prime Numbers.
 
-void SophieGermainPrimes(long long n)
+int SophieGermainPrimes(long long n)
 {
 	count=0, num=2;
 	int flag;
@@ -572,4 +592,5 @@ void SophieGermainPrimes(long long n)
 		num++;
 	}
 	printf("\n");
+	return 1;
 }
