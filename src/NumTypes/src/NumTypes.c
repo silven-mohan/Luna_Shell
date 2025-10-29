@@ -180,7 +180,7 @@ int IsDisarium(long long num)
 //This function returns the value of num raised to index.
 //This is used in IsDisarium function.
 
-int PowNum(int num, long index)
+int PowNum(long long num, long long index)
 {
     int sq=1;
     i=1;
@@ -220,7 +220,7 @@ int IsStrong(long long num)
 //factorial:
 //This function returns the factorial value of the passed number.
 
-int factorial(int num)
+int factorial(long long int num)
 {
     if(num==0 || num==1)
     {
@@ -571,4 +571,24 @@ int IsSophieGermainPrime(long long num)
 		printf("\nSo, %lld is not a Sophie Germain Prime.\n", num);
 		return 0;
 	}
+}
+
+//fact():
+//This function is used to print the factorial of a number.
+
+int fact(long long int num)
+{
+	printf("\nThe factorial of %lld is %lld.", num, factorial(num));
+
+	return 1;
+}
+
+//PowNumMain():
+//This function is used to print the power of number.
+
+int PowNumMain(long long num, long long index)
+{
+	printf("\n%lld raised to the power of %lld is %lld", num, index, PowNum(num, index));
+
+	return 1;
 }
