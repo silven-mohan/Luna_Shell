@@ -20,3 +20,4 @@ void LunaBack(char *cmd);
 char *Custfgets(char *str, int n, FILE *stream);
 long long asctoint(char *numstr);
 void SemanticAnalyzer(char *cmdname1, long long number);
+void MulSA(char *cmdname, char *args);
