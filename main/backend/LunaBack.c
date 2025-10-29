@@ -3,18 +3,19 @@
 //Preprocessing Directives:
 #include "../includes/main.h"	//This contains all the prototypes of the NumTypes Functions.
 
-//Function Pointer:
-typedef int (*NTFunc) (long long);	//Uniform Signature of some of the functions in NumTypes.
+//Function Pointers:
+typedef int (*NTFunc) (long long);	//Uniform Signature of some of the functions with single arguments and return type as int.
+typedef int (*Func2) (long long, long long);
 
 //Commands List:
-//NumTypes:
+//For Single Arg Funcs:
 typedef struct
 {
 	const char *name;
 	NTFunc func;
-} NTCommandEntry;
+} CommandEntry;
 
-NTCommandEntry Commands[]=
+CommandEntry Commands[]=
 {
 	//NumTypes:
 	{"isprime", IsPrime},
@@ -59,11 +60,24 @@ NTCommandEntry Commands[]=
 	{"deficient", Deficient},
 	{"sophiegermainprimes", SophieGermainPrimes},
 	//Factors:
-	{"factors", factors}
-
+	{"factors", factors},
+	{"factorial", fact}
 };
 
-const int NUMCMDS=(sizeof(Commands)/sizeof(Commands[0]));
+//For Two Arguements:
+typedef struct
+{
+	const char *name;
+	Func2 func;
+} CommandEntry1;
+
+CommandEntry1 Commands1[]=
+{
+	{"multiplicationtablegen", MultiplicationTableGen},
+	{"exponen", PowNumMain}
+};
+
+const int NUMCMDS=(sizeof(Commands)/sizeof(Commands[0])), NC1=(sizeof(Commands1)/sizeof(Commands1[0]));
 long long k;
 
 //LunaBack():
@@ -72,17 +86,28 @@ long long k;
 
 void LunaBack(char *cmd)
 {
-	long long arg, j=0;
-	char LBNum[21];
+	long long arg, j=0, f;
+	char cmd2[21];
+	f=0;
 	//Tokenizing:
 	char *cmdtemp=cmd;
 	char *token=strtok(cmdtemp, " ");
 	for(k=(strcspn(cmd, " ")+1);cmd[k]!='\0';k++)
 	{
-		LBNum[j++]=cmd[k];
+		cmd2[j]=cmd[k];
+		if(isspace(cmd2[j]))
+		{
+			f=1;	//To Handle Multiple arguements.
+		}
+		j++;
 	}
-	LBNum[j]='\0';
-	arg=asctoint(LBNum);
+	cmd2[j]='\0';
+	if(f==1)
+	{
+		MulSA(token, cmd2);
+		return;
+	}
+	arg=asctoint(cmd2);
 	SemanticAnalyzer(token, arg);
 }
 
@@ -129,3 +154,89 @@ void SemanticAnalyzer(char *cmdname1, long long number)
 	}
 }
 
+//MulSA():
+//This function does the Semantic analysis for the functions with multiple arguements.
+void MulSA(char *cmdname, char *args)
+{
+	long long arg1, arg2, j;
+	k=0;
+	int flag=0, ki;
+	char sarg1[20], sarg2[20];
+	if((strcmp(cmdname, "ascsort")==0) || (strcmp(cmdname, "descsort")==0))
+	{
+		long ndigs=0;
+		for(k=0;args[k]!='\0';k++)
+		{
+			if(isspace(args[k]))
+			{
+				ndigs++;		//Find Number of digits.
+			}
+		}
+		ndigs++;
+		long long nums[ndigs];
+		char nums1[20];
+		long long limit=0;
+		while(limit<(ndigs))
+		{
+			for(k=0;k<(strcspn(args, " "));k++)
+			{
+				nums1[k]=args[k];	//Extract the first number.
+			}
+			nums1[k]='\0';
+			nums[limit]=asctoint(nums1);	//Convert it into integer.
+			nums1[0]='\0';
+			ki=strcspn(args, " ")+1;
+			for(k=(ki);args[k]!='\0';k++)
+			{	
+				args[k-(ki)]=args[k];		//Remove the found number.
+			}
+			args[k-ki]='\0';
+			limit++;
+		}
+		nums[limit]=asctoint(args);		//Extract the last number.
+		if(strcmp(cmdname, "ascsort")==0)
+		{
+			AscSort(nums, ndigs);
+		}
+		else if(strcmp(cmdname, "descsort")==0)
+		{
+			DescSort(nums, ndigs);
+		}
+		else
+		{
+			printf("\n -Luna: \"%s\" command not found.", cmdname);
+		}
+
+		return;
+	}
+	//Parsing the args:
+	for(k=0;k<(strcspn(args, " "));k++)
+	{
+		sarg1[k]=args[k];
+	}
+	sarg1[k]='\0';
+	j=0;
+	k=(strcspn(args, " "))+1;
+	while(args[k]!='\0')
+	{
+		sarg2[j++]=args[k];
+		k++;
+	}
+	sarg2[j]='\0';
+	arg1=asctoint(sarg1);
+       	arg2=asctoint(sarg2);
+	//Looking up for the function.
+	for(k=0;k<NC1;k++)
+	{
+		if(strcmp(cmdname, Commands1[k].name)==0)
+		{
+			Commands1[k].func(arg1, arg2);
+			flag=1;
+			break;
+		}
+	}
+	if(flag==0)
+	{
+		printf("\n -Luna: \"%s\" command not found.\n", cmdname);
+	}
+}
