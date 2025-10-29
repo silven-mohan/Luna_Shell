@@ -69,16 +69,40 @@ typedef struct
 {
 	const char *name;
 	Func2 func;
-} CommandEntry1;
+} DblCommandEntry1;
 
-CommandEntry1 Commands1[]=
+DblCommandEntry1 DblCommands1[]=
 {
 	{"multiplicationtablegen", MultiplicationTableGen},
 	{"exponen", PowNumMain}
 };
 
-const int NUMCMDS=(sizeof(Commands)/sizeof(Commands[0])), NC1=(sizeof(Commands1)/sizeof(Commands1[0]));
+//For Limits Functions:
+typedef void (*SingleFunc) (void);
+
+typedef struct
+{
+	const char* name;
+	SingleFunc func;
+} SingleCommandEntry;
+
+SingleCommandEntry SingleCommands[] =
+{
+	{"charlimits", CharLimits},
+	{"shortlimits", ShrtLimits},
+	{"intlimits", IntLimits},
+	{"longintlimits", LIntLimits},
+	{"longlongintlimits", LLIntLimits},
+	{"floatlimits", FltLimits},
+	{"doublelimits", DblLimits},
+	{"longdoublelimits", LDblLimits}
+};
+
+//Global Declarations:
+const int NUMCMDS=(sizeof(Commands)/sizeof(Commands[0])), NC1=(sizeof(DblCommands1)/sizeof(DblCommands1[0]));
+const int SC=(sizeof(SingleCommands)/sizeof(SingleCommands[0]));
 long long k;
+int flag=0;
 
 //LunaBack():
 //This is the main backend function.
@@ -86,9 +110,23 @@ long long k;
 
 void LunaBack(char *cmd)
 {
-	long long arg, j=0, f;
+	long long arg, j=0, f, Single=0;
 	char cmd2[21];
 	f=0;
+	//Checking For Commands with no options.
+	for(k=0;cmd[k]!='\0';k++)
+	{
+		if(isspace(cmd[k]))
+		{
+			Single=1;
+			break;
+		}
+	}
+	if(Single==0)
+	{
+		SingleCmds(cmd);
+		return;
+	}
 	//Tokenizing:
 	char *cmdtemp=cmd;
 	char *token=strtok(cmdtemp, " ");
@@ -138,7 +176,6 @@ long long asctoint(char *numstr)
 //This function looks up the command name in the commands list and finds it, retreives its function pointer and executes it by passing specified argument.
 void SemanticAnalyzer(char *cmdname1, long long number)
 {
-	int flag=0;
 	for(k=0;k<NUMCMDS;k++)
 	{
 		if(strcmp(cmdname1, Commands[k].name)==0)
@@ -160,7 +197,7 @@ void MulSA(char *cmdname, char *args)
 {
 	long long arg1, arg2, j;
 	k=0;
-	int flag=0, ki;
+	int ki;
 	char sarg1[20], sarg2[20];
 	if((strcmp(cmdname, "ascsort")==0) || (strcmp(cmdname, "descsort")==0))
 	{
@@ -228,9 +265,9 @@ void MulSA(char *cmdname, char *args)
 	//Looking up for the function.
 	for(k=0;k<NC1;k++)
 	{
-		if(strcmp(cmdname, Commands1[k].name)==0)
+		if(strcmp(cmdname, DblCommands1[k].name)==0)
 		{
-			Commands1[k].func(arg1, arg2);
+			DblCommands1[k].func(arg1, arg2);
 			flag=1;
 			break;
 		}
@@ -239,4 +276,26 @@ void MulSA(char *cmdname, char *args)
 	{
 		printf("\n -Luna: \"%s\" command not found.\n", cmdname);
 	}
+}
+
+//LSCmds():
+//This function is used to call the functions that require no args.
+
+void SingleCmds(char *cmdname)
+{
+	flag=0;
+	for(k=0;k<SC;k++)
+	{
+		if(strcmp(cmdname, SingleCommands[k].name)==0)
+		{
+			SingleCommands[k].func();
+			flag=1;
+			break;
+		}
+	}
+	if(flag==0)
+	{
+		printf("\n -Luna: \"%s\" command not found.\n", cmdname);
+	}
+
 }
